@@ -1,19 +1,3 @@
-## além do main e init, é importante ter um arquivo de "build" que ajuda no empacotamente
-## ele fica na raiz do REPOSITÓRIO (mesmo lugar do README) e chama setup.py
-## O setup.py é transformado para outro formato e colocado no binário do python.
-## nele ficam informações importantes para que o programa possa ser instalando.
-## o jeito mais tracional é usando o setuptools. Ele é necessário para
-## o jeito mais tracional é usando o setuptools. Ele é necessário para
-## o pacote poder ser instalado.
-## python setup.py build ## cria um wheel e cria a pasta build
-## tree -L 2 build
-## pip install -e ## se dentro do diretorio atual existe um arquivo setup.py
-## ao instalar com o -e, alteracoes feitas no repositorio sao automaticamente
-## "instaladas".
-## "instaladas".
-## pip list # dundie apareceu na lista, como editável.
-## pasta egg.info metadados como dependências e etc.
-
 from setuptools import setup, find_packages
 
 setup(
