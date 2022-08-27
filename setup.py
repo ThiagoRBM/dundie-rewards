@@ -2,21 +2,15 @@
 ## ele fica na raiz do REPOSITÓRIO (mesmo lugar do README) e chama setup.py
 ## O setup.py é transformado para outro formato e colocado no binário do python.
 ## nele ficam informações importantes para que o programa possa ser instalando.
-<<<<<<< HEAD
 ## o jeito mais tracional é usando o setuptools. Ele é necessário para
-=======
 ## o jeito mais tracional é usando o setuptools. Ele é necessário para
->>>>>>> f04db00 (tranformado em binário instalável)
 ## o pacote poder ser instalado.
 ## python setup.py build ## cria um wheel e cria a pasta build
 ## tree -L 2 build
 ## pip install -e ## se dentro do diretorio atual existe um arquivo setup.py
 ## ao instalar com o -e, alteracoes feitas no repositorio sao automaticamente
-<<<<<<< HEAD
 ## "instaladas".
-=======
 ## "instaladas".
->>>>>>> f04db00 (tranformado em binário instalável)
 ## pip list # dundie apareceu na lista, como editável.
 ## pasta egg.info metadados como dependências e etc.
 
