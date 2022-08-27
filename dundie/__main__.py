@@ -8,4 +8,9 @@
 ##python -m dundie
 ## se ele for deletado, não será
 
+<<<<<<< HEAD
 print("executando main")
+=======
+def main():
+    print("executando main pelo entrypoint")
+>>>>>>> f04db00 (tranformado em binário instalável)
