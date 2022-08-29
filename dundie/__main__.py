@@ -41,8 +41,9 @@ def main():
     )
 
     args= parser.parse_args()
-    #print(args)
-    globals()[args.subcommand](args.filepath)
+    print(args)
+    #print([key for key in globals().keys()]) ## vendo o que está disponível em globals
+    globals()[args.subcommand](args.filepath) ## pega a funcao "load" e usa como argumento o "filepath"
 
     #print("executando main pelo entrypoint")
 
