@@ -25,9 +25,11 @@ setup(
     name= "dundie", ## pode ser qualquer coisa. É o nome que será usado do pip
     version= "0.1.0", ## padrão semantic versioning
     description= "Rewars point system",
-    long_description= read_requierements("README.md"),
+    #long_description= read_requierements("README.md"), ## essa linha estava dando problema na hora de rodar make install, Bruno falou para substituir e funcionou
+    long_description="test",
     long_description_content_type= "text/markdown",
     author= "thiago",
+    python_requires= ">=3.8",
     packages= find_packages(), ## pastas com o programa. Esse comando pega todas as pastas com arquivo init dentro. Pode ser feito manualmente também com listas.
     entry_points= {
         "console_scripts": [ ## especificar tipo de entrypoint
