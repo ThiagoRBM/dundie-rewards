@@ -17,13 +17,13 @@ jobs:
       matrix:
         python-version: ['3.9', '3.10'] # qual versão do python será testada no github
         os: [ubuntu-latest] # qual sistema operacional
-      runs-on: ${{matrix.os}}
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-python@v2
-          with:
-            python-version: ${{matrix.python-version}}
-        - name: Install Project
-          run: pip install '.[test]' # testa instalacao
-        - name: Run tests
-          run: pytest -vv tests integration # roda os testes unitários e de integracao
+    runs-on: ${{matrix.os}}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{matrix.python-version}}
+      - name: Install Project
+        run: pip install '.[test]' # testa instalacao
+      - name: Run tests
+        run: pytest -vv tests integration # roda os testes unitários e de integracao
