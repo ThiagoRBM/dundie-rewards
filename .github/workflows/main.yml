@@ -24,6 +24,6 @@ jobs:
           with:
             python-version: ${{matrix.python-version}}
         - name: Install Project
-          run: pip install -e '.[test]' # testa instalacao
+          run: pip install '.[test]' # testa instalacao
         - name: Run tests
           run: pytest -vv tests integration # roda os testes unitários e de integracao
