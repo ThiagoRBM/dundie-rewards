@@ -14,7 +14,7 @@ ipython:
 	@.venv/bin/ipython
 
 
-tests: ## testes unitarios
+test: ## testes unitarios
 	@.venv/bin/pytest -s ## fazer testes automaticamente (para rodar, rodar "make tests" no root)
 
 
