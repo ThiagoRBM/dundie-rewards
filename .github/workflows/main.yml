@@ -12,7 +12,7 @@ on:
 
 jobs:
   tests:
-    strategy:
+    strategy: ## cuidado com indentação
       fail-fast: false #se true, caso dê erro em alguma coisa tudo para
       matrix:
         python-version: ['3.9', '3.10'] # qual versão do python será testada no github
