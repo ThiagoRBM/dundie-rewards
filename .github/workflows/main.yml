@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false #se true, caso dê erro em alguma coisa tudo para
       matrix:
-        python-version: [3.9, 3.10] # qual versão do python será testada no github
+        python-version: ['3.9', '3.10'] # qual versão do python será testada no github
         os: [ubuntu-latest] # qual sistema operacional
       runs-on: ${{matrix.os}}
       steps:
