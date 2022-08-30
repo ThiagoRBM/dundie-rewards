@@ -1,0 +1,8 @@
+## dependências de desenvolvimento
+ipdb
+ipython
+pudb
+pytest-watch
+
+## instalar projeto como editável
+-e .
