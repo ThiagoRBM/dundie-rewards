@@ -4,8 +4,10 @@ ipython
 pudb
 pytest-watch
 
+
 ## build
 wheel
+
 
 ## instalar projeto como editável
 -e .
