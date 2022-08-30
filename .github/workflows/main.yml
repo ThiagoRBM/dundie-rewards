@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push: ## quando um push for para a branch main
+    branches:
+      - "main"
+  pull_request: ## quando um pull request for se integrar a branch main
+    branches:
+      - "main"
+
+  workflow_dispatch:
+
+jobs:
+  tests:
+    strategy:
+      fail-fast: false #se true, caso dê erro em alguma coisa tudo para
+      matrix:
+        python-version: [3.9, 3.10] # qual versão do python será testada no github
+        os: [ubuntu-latest] # qual sistema operacional
+      runs-on: ${{matrix.os}}
+      steps:
+        - uses: actions/checkout@v2
+        - uses: actions/setup-python@v2
+          with:
+            python-version: ${{matrix.python-version}}
+        - name: Install Project
+          run: pip install -e '.[test]' # testa instalacao
+        - name: Run Tests
+          run: pytest -vv tests integration # roda os testes unitários e de integracao
