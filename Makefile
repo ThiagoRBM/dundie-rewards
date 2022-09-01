@@ -18,10 +18,6 @@ test: ## testes unitarios
 	@.venv/bin/pytest -s -vv tests integration
 
 
-testci: ## criar o arquivo .xml com o relatóio JUNIT
-	@.venv/bin/pytest -v --junitxml=test-result.xml
-
-
 watch:
 	#@.venv/bin/ptw ## rodar o pytest-watch automaticamente ao salvar algum arquivo do projeto
 	@ls **/*.py | entr pytest # faz a mesma coisa que o ptwd, mas funciona com o arquivo .toml pq o ptwd nao funcionou com ele. É uma ferramenta do UNIX e não pytho; sudo apt install entr

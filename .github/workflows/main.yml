@@ -27,7 +27,7 @@ jobs:
         run: pip install '.[test]' # testa instalacao
       - name: Run tests
         #run: pytest -vv tests integration # roda os testes unitários e de integracao
-        run: make testci ## gera o report JUNIT
+        run: pytest -v --junitxml=test-result.xml ## gera o report JUNIT
       - name: Publish junit results ## publica o resultado (pode ser publicado em várias plataformas)
         uses: EnricoMi/publish-unit-test-result-action@v1 ## usa uma action opensource criada pelo usuario Enrico
         if: always() ## se não tiver isso, será feito só quando falhas
