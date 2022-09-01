@@ -14,9 +14,9 @@ ipython:
 	@.venv/bin/ipython
 
 
-
 test: ## testes unitarios
 	@.venv/bin/pytest -s -vv tests integration
+
 
 watch:
 	#@.venv/bin/ptw ## rodar o pytest-watch automaticamente ao salvar algum arquivo do projeto
