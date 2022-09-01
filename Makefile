@@ -14,9 +14,13 @@ ipython:
 	@.venv/bin/ipython
 
 
-
 test: ## testes unitarios
 	@.venv/bin/pytest -s -vv tests integration
+
+
+testci: ## criar o arquivo .xml com o relatóio JUNIT
+	@.venv/bin/pytest -v --junitxml=test-result.xml
+
 
 watch:
 	#@.venv/bin/ptw ## rodar o pytest-watch automaticamente ao salvar algum arquivo do projeto
