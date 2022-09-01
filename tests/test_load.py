@@ -6,7 +6,7 @@ import pytest
 @pytest.mark.high
 def test_positive_has_2_names():
     """Testes da função load."""
-    assert len(load(PEOPLE_FILE)) == 2
+    assert len(load(PEOPLE_FILE)) == 3
 
 @pytest.mark.unit
 @pytest.mark.high
