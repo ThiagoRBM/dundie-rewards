@@ -30,7 +30,7 @@ jobs:
       - name: Check importing style
         run: isort dundie tests integration setup.py
       - name: Look for auto-format errors
-        run: black --ckeck --diff dundie tests integration # roda o black
+        run: black --check --diff dundie tests integration # roda o black
       # e mostra onde o código está mal formatado
 
   tests:
