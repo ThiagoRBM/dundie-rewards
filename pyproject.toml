@@ -8,5 +8,25 @@ testpaths = [
 
 [tool.flake8]
 exclude = [".venv", "build"]
-max-line-length= 80 ## ajustar tamanho máximo de linha, 79 é o padrão. Caso queira ignorar um erro no pyflake, colocar "# noqa" (no quality assurance) na linha que está com problema
+max-line-length= 80 # ajustar tamanho máximo de linha, 79 é o padrão. Caso queira ignorar um erro no pyflake, colocar "# noqa" (no quality assurance) na linha que está com problema
 #extend-ignore = "E262" # ignora os erros com código E262
+
+[tool.black]
+line-length= 80
+target-version= ["py36", "py37"] # quais pythons estão sendo usados
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.venv
+  | _build
+  | build
+  | dist
+  | migrations
+)/
+'''
+
+[tool.isort]
+profile= "black"
+src_paths=["dundie", "tests", "integration"]
+multi_line_output= 3 #  VHE (vertical hanging indent)

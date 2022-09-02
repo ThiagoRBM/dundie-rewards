@@ -1,19 +1,19 @@
 name: CI
 
 on:
-  push: ## quando um push for para a branch main
+  push: # quando um push for para a branch main
     branches:
       - "main"
-  pull_request: ## quando um pull request for se integrar a branch main
+  pull_request: # quando um pull request for se integrar a branch main
     branches:
       - "main"
 
   workflow_dispatch:
 
 jobs:
-  lint: ## verificar estilo
-    strategy: ## cuidado com indentação
-      fail-fast: true #se true, caso dê erro em alguma coisa tudo para
+  lint: # verificar estilo
+    strategy: # cuidado com indentação
+      fail-fast: true # se true, caso dê erro em alguma coisa tudo para
       matrix:
         python-version: ['3.10'] # qual versão do python será testada no github
         os: [ubuntu-latest] # qual sistema operacional
@@ -27,10 +27,15 @@ jobs:
         run: pip install '.[test]' # testa instalacao
       - name: Look for style errors
         run: pflake8
+      - name: Check importing style
+        run: isort dundie tests integration setup.py
+      - name: Look for auto-format errors
+        run: black --ckeck --diff dundie tests integration # roda o black
+      # e mostra onde o código está mal formatado
 
   tests:
-    needs: lint ## esse bloco precisa que o bloco lint tenha dado certo
-    strategy: ## cuidado com indentação
+    needs: lint # esse bloco precisa que o bloco lint tenha dado certo
+    strategy: # cuidado com indentação
       fail-fast: false #se true, caso dê erro em alguma coisa tudo para
       matrix:
         python-version: ['3.9', '3.10'] # qual versão do python será testada no github
@@ -45,10 +50,10 @@ jobs:
         run: pip install '.[test]' # testa instalacao
       - name: Run tests
         #run: pytest -vv tests integration # roda os testes unitários e de integracao
-        run: pytest -v --junitxml=test-result.xml ## gera o report JUNIT
-      - name: Publish junit results ## publica o resultado (pode ser publicado em várias plataformas)
-        uses: EnricoMi/publish-unit-test-result-action@v1 ## usa uma action opensource criada pelo usuario Enrico
-        if: always() ## se não tiver isso, será feito só quando falhas
+        run: pytest -v --junitxml=test-result.xml # gera o report JUNIT
+      - name: Publish junit results # publica o resultado (pode ser publicado em várias plataformas)
+        uses: EnricoMi/publish-unit-test-result-action@v1 # usa uma action opensource criada pelo usuario Enrico
+        if: always() # se não tiver isso, será feito só quando falhas
         with:
           files: test-result.xml
           check_name: resultado_teste (Python ${{matrix.python-version}})
