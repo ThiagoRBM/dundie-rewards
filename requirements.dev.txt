@@ -1,13 +1,17 @@
-## dependências de desenvolvimento
+# dependências de desenvolvimento
 ipdb
 ipython
 pudb
 pytest-watch
 
 
-## build
+# build
 wheel
 
-
-## instalar projeto como editável
+# qualidade do código
+flake8==4.0.1
+pyproject-flake8
+black
+isort
+# instalar projeto como editável
 -e .

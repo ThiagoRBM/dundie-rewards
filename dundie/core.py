@@ -1,13 +1,15 @@
 from dundie.utils.log import get_logger
 
-
 """Funcoes principais"""
+
+log = get_logger()
 
 
 def load(filepath):
     """Loads data from filepath to the database.
 
-    >>> len(load('assets/people.csv')) ## doctest, para rodar no terminal: python -m doctest -v dundie/core.py
+    >>> len(load('assets/people.csv')) ## doctest, para rodar no terminal:
+    python -m doctest -v dundie/core.py
     2
     """
     try:
