@@ -1,4 +1,4 @@
-.PHONY: install virtualenv ipython clean tests watch ## assim o makefile não cria arquivos extras (que é o padrão), coloca os comandos que foram criados abaixo
+.PHONY: install virtualenv ipython clean test watch pflake8 ## assim o makefile não cria arquivos extras (que é o padrão), coloca os comandos que foram criados abaixo
 
 
 install: ## rodar como "make install
@@ -12,6 +12,10 @@ virtualenv: ## rodar como "make virtualenv"
 
 ipython:
 	@.venv/bin/ipython
+
+
+lint: ## "buscar problemas", linters
+	@.venv/bin/pflake8
 
 
 test: ## testes unitarios

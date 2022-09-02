@@ -5,3 +5,8 @@ testpaths = [
     "tests",
     "integration",
 ]
+
+[tool.flake8]
+exclude = [".venv", "build"]
+max-line-length= 80 ## ajustar tamanho máximo de linha, 79 é o padrão. Caso queira ignorar um erro no pyflake, colocar "# noqa" (no quality assurance) na linha que está com problema
+#extend-ignore = "E262" # ignora os erros com código E262

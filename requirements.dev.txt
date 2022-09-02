@@ -8,6 +8,9 @@ pytest-watch
 ## build
 wheel
 
+## qualidade do código
+flake8==4.0.1
+pyproject-flake8
 
 ## instalar projeto como editável
 -e .
