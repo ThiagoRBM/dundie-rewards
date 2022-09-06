@@ -1,0 +1,64 @@
+{
+    "people": {
+        "fulano@dunder.com": {
+            "name": "fulano",
+            "dept": "sales",
+            "role": "salesman",
+            "created": false,
+            "email": "fulano@dunder.com"
+        },
+        "ciclano@dunder.com": {
+            "name": "ciclano",
+            "dept": "sales",
+            "role": "manager",
+            "created": false,
+            "email": "ciclano@dunder.com"
+        },
+        "beltrano@dunder.com": {
+            "name": "beltrano",
+            "dept": "C-Level",
+            "role": "CEO",
+            "created": false,
+            "email": "beltrano@dunder.com"
+        }
+    },
+    "balance": {
+        "fulano@dunder.com": 500,
+        "ciclano@dunder.com": 100,
+        "beltrano@dunder.com": 100
+    },
+    "movement": {
+        "fulano@dunder.com": [
+            {
+                "date": "2022-09-06T10:44:21.851491",
+                "actor": "system",
+                "value": 500
+            }
+        ],
+        "ciclano@dunder.com": [
+            {
+                "date": "2022-09-06T10:44:21.853601",
+                "actor": "system",
+                "value": 100
+            }
+        ],
+        "beltrano@dunder.com": [
+            {
+                "date": "2022-09-06T10:44:21.854205",
+                "actor": "system",
+                "value": 100
+            }
+        ]
+    },
+    "users": {
+        "fulano@dunder.com": {
+            "password": "jTPtZzQ3"
+        },
+        "ciclano@dunder.com": {
+            "password": "XQ4IjcEb"
+        },
+        "beltrano@dunder.com": {
+            "password": "dsr9ZTqX"
+        }
+    }
+}

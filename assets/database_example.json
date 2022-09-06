@@ -1,0 +1,36 @@
+{
+    "people": {
+        "fulano@dunder.com":{
+        "name": "fulano",
+        "role": "vendedor",
+        "dept": "vendas",
+        "active": true
+    },
+        "ciclano@dunder.com":{
+        "name": "ciclano",
+        "role": "gerente",
+        "dept": "vendas",
+        "active": true
+    },
+        "beltrano@dunder.com":{
+        "name": "belatrno",
+        "role": "gerente",
+        "dept": "diretoria",
+        "active": true
+    }
+    },
+    "balance": {"fulano@dunder.com": 500,
+                "ciclano@dunder.com": 230},
+    "movement": {
+        "fulano@dunder.com": [
+            {"date": "",
+            "value": 0}
+        ]
+    },
+    "users": {
+        "fulano@dunder.com": {
+            "password": "owufhofçpmgw",
+            "is_admin": false
+        }
+    }
+}

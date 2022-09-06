@@ -40,9 +40,9 @@ setup(
     # com listas.
     entry_points={
         "console_scripts": [  # especificar tipo de entrypoint
-            "dundie = dundie.__main__:main"  # nome que será chamado no terminal
-            # e o pacote do entrypoint, especificando o modulo (__main__) e a
-            # funcao zz
+            "dundie = dundie.__main__:main"  # nome que será chamado no
+            # terminal e o pacote do entrypoint, especificando o modulo
+            # (__main__) e a funcao
         ]
     },
     install_requires=read_requierements("requirements.txt"),
