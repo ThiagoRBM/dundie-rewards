@@ -131,3 +131,6 @@ dmypy.json
 
 # nao incluir logs
 *.log.*
+
+# scripts de testes
+testeLOAD.py

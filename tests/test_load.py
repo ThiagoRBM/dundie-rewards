@@ -14,7 +14,8 @@ def test_positive_has_2_names():
 
 @pytest.mark.unit
 @pytest.mark.high
-def test_positive_starts_with_f():
+def test_positive_starts_with_fulano(request):
+    print(f"TESTE= {load(PEOPLE_FILE)}")
     assert (
-        load(PEOPLE_FILE)[0][0] == "f"
-    )  # primeira letra do primeiro item == f
+        load(PEOPLE_FILE)[0]["name"] == "fulano"
+    )  # primeira letra do primeiro item == fulano
