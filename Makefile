@@ -8,7 +8,7 @@ install: # rodar como "make install
 
 
 virtualenv: # rodar como "make virtualenv"
-	@python -m venv .venv # comando para criar uma venv caso não exista
+	@python3 -m venv .venv # comando para criar uma venv caso não exista
 
 
 ipython:
