@@ -24,7 +24,7 @@ def go_to_tmpdir(request):
 
 @pytest.fixture(autouse=True, scope="function")
 def setup_testing_database(request):
-    """Cria um banco de dados para cada teste em tmpdir.
+    """Cria um banco de dados para cada teste em tmpdir e evitar conflitos
     Força database.py a usar esse diretório"""
     tmpdir = request.getfixturevalue("tmpdir")
     test_db = str(tmpdir.join("database.test.json"))
