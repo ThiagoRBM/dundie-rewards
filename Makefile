@@ -1,6 +1,17 @@
 .PHONY: install virtualenv ipython clean test watch pflake8 # assim o makefile não cria arquivos extras (que é o padrão), coloca os comandos que foram criados abaixo
+
 # flake8-docstrings complementa o flake8 e verifica a formatação nas docstrings
 # mas não tem ferramenta para formatar automaticamente como o black
+
+
+install: # rodar como "make install
+	@echo "instalando para ambiente de desenvolvimento" # o arroba no início omite o comando em si
+	@.venv/bin/python -m pip install -e '.[test,dev]' # adicionando o caminho para ativar a venv e instalar nela. Se ela não existir, ele falha por padrão
+
+
+
+virtualenv: # rodar como "make virtualenv"
+	@python3 -m venv .venv # comando para criar uma venv caso não exista
 
 install: # rodar como "make install
 	@echo "instalando para ambiente de desenvolvimento" # o arroba no início omite o comando em si
@@ -8,7 +19,7 @@ install: # rodar como "make install
 
 
 virtualenv: # rodar como "make virtualenv"
-	@python3 -m venv .venv # comando para criar uma venv caso não exista
+	@python -m venv .venv # comando para criar uma venv caso não exista
 
 
 ipython:
