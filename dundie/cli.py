@@ -1,3 +1,5 @@
+import json
+
 import pkg_resources  # pega informacoes do repositório lá no setup.py
 import rich_click as click  # lib para facilitar a criação da CLI
 from rich.console import Console  # para printar a tabela ao final
@@ -40,7 +42,7 @@ def load(filepath):  # dependency injection // dundie load --help
     """
 
     table = Table(title="Dunder Mifflin Associates")
-    headers = ["name", "dept", "role", "created", "e-mail"]
+    headers = ["name", "dept", "role", "e-mail"]
     for header in headers:
         table.add_column(header, style="#e96600")
 
@@ -53,3 +55,68 @@ def load(filepath):  # dependency injection // dundie load --help
     console = Console()  # não da para simplesmente printar a tabela porque é
     # necessário saber o tamanho do terminal
     console.print(table)
+
+
+@main.command()
+@click.option("--dept", required=False)  # se deixado em branco,
+# mostra todo o DB
+@click.option("--email", required=False)  # se deixado em branco,
+# mostra todo o DB
+@click.option("--output", default=None)  # passar se quer salvar.
+def show(output, **query):
+    """Shows info about an specific email or entire department and if
+    left without arguments, all employees are shown.
+    Saves information on specified path if output is supplied.
+
+    # Info shown
+    - Account balance (points to spend)
+    - Last Movement
+    - Name
+    - Department
+    - Role
+
+    >>> dundie show --dept=sales
+    >>> dundie show --dept=sales --output=/tmp/foo.json
+
+    """
+    result = core.read(**query)
+
+    if output:
+        with open(output, "w") as output_file:
+            output_file.write(json.dumps(result))
+
+    if not result:
+        print("Nothing to show")
+
+    table = Table(title="Dunder Mifflin Report")
+    for key in result[0]:
+        table.add_column(key.title(), style="#e96600")
+
+    for person in result:
+        table.add_row(*[str(value) for value in person.values()])
+
+    console = Console()
+    console.print(table)
+
+
+@main.command()
+@click.argument("value", type=click.INT, required=True)
+@click.option("--dept", required=False)
+@click.option("--email", required=False)
+@click.pass_context  # para mostrar a tabela no CLI após fazer a movimentação
+# possibilita que um comando chame outro
+def add(ctx, value, **query):
+    """Add points to user or dept."""
+    core.add(value, **query)
+    ctx.invoke(show, **query)
+
+
+@main.command()
+@click.argument("value", type=click.INT, required=True)
+@click.option("--dept", required=False)
+@click.option("--email", required=False)
+@click.pass_context  # para mostrar a tabela no CLI após fazer a movimentação
+def remove(ctx, value, **query):
+    """Remove points from user or dept."""
+    core.add(-value, **query)
+    ctx.invoke(show, **query)
