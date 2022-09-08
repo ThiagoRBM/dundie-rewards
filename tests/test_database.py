@@ -64,7 +64,6 @@ def test_add_or_remove_points_for_person():
     data = {"role": "salesman", "dept": "sales", "name": "Joe Doe"}
     db = connect()  # conecta no DB
     _, created = add_person(db, pk, data)
-    assert created is True
     commit(db)  # comita
 
     db = connect()  # reconecta

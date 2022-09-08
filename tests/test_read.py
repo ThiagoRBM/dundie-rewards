@@ -11,14 +11,13 @@ def test_read_with_query():
     pk = "joe@doe.com"
     data = {"role": "salesman", "dept": "sales", "name": "Joe Doe"}
     _, created = add_person(db, pk, data)
-    assert created is True
 
     pk = "jim@due.com"
     data = {"role": "manager", "dept": "management", "name": "Jim Due"}
     db = connect()  # conecta no DB
     _, created = add_person(db, pk, data)
     print(_)
-    assert created is True
+
     commit(db)
 
     response = read()
