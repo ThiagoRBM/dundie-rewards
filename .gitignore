@@ -134,3 +134,4 @@ dmypy.json
 
 # scripts de testes
 testeLOAD.py
+testeREAD.py

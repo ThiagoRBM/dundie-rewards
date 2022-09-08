@@ -3,62 +3,156 @@
         "fulano@dunder.com": {
             "name": "fulano",
             "dept": "sales",
-            "role": "salesman",
-            "created": false,
-            "email": "fulano@dunder.com"
+            "role": "salesman"
         },
         "ciclano@dunder.com": {
             "name": "ciclano",
             "dept": "sales",
-            "role": "manager",
-            "created": false,
-            "email": "ciclano@dunder.com"
+            "role": "manager"
         },
         "beltrano@dunder.com": {
             "name": "beltrano",
             "dept": "C-Level",
-            "role": "CEO",
-            "created": false,
-            "email": "beltrano@dunder.com"
+            "role": "CEO"
         }
     },
     "balance": {
         "fulano@dunder.com": 500,
         "ciclano@dunder.com": 100,
-        "beltrano@dunder.com": 100
+        "beltrano@dunder.com": 500
     },
     "movement": {
         "fulano@dunder.com": [
             {
-                "date": "2022-09-06T10:44:21.851491",
+                "date": "2022-09-08T09:02:18.363471",
                 "actor": "system",
+                "value": 500
+            },
+            {
+                "date": "2022-09-08T09:08:49.975046",
+                "actor": "thiagorbm",
+                "value": 10
+            },
+            {
+                "date": "2022-09-08T09:10:08.462460",
+                "actor": "thiagorbm",
+                "value": -10
+            },
+            {
+                "date": "2022-09-08T09:12:16.788061",
+                "actor": "thiagorbm",
+                "value": 10
+            },
+            {
+                "date": "2022-09-08T09:12:24.597929",
+                "actor": "thiagorbm",
+                "value": -10
+            },
+            {
+                "date": "2022-09-08T09:12:42.054099",
+                "actor": "thiagorbm",
+                "value": 10
+            },
+            {
+                "date": "2022-09-08T09:12:44.945286",
+                "actor": "thiagorbm",
+                "value": -10
+            },
+            {
+                "date": "2022-09-08T09:15:22.551961",
+                "actor": "thiagorbm",
+                "value": -10
+            },
+            {
+                "date": "2022-09-08T09:15:25.799023",
+                "actor": "thiagorbm",
+                "value": 10
+            },
+            {
+                "date": "2022-09-08T09:15:41.991541",
+                "actor": "thiagorbm",
+                "value": -500
+            },
+            {
+                "date": "2022-09-08T09:15:50.188341",
+                "actor": "thiagorbm",
                 "value": 500
             }
         ],
         "ciclano@dunder.com": [
             {
-                "date": "2022-09-06T10:44:21.853601",
+                "date": "2022-09-08T09:02:18.365400",
                 "actor": "system",
                 "value": 100
+            },
+            {
+                "date": "2022-09-08T09:08:49.975062",
+                "actor": "thiagorbm",
+                "value": 10
+            },
+            {
+                "date": "2022-09-08T09:10:08.462476",
+                "actor": "thiagorbm",
+                "value": -10
+            },
+            {
+                "date": "2022-09-08T09:12:16.788076",
+                "actor": "thiagorbm",
+                "value": 10
+            },
+            {
+                "date": "2022-09-08T09:12:24.597953",
+                "actor": "thiagorbm",
+                "value": -10
+            },
+            {
+                "date": "2022-09-08T09:12:42.054114",
+                "actor": "thiagorbm",
+                "value": 10
+            },
+            {
+                "date": "2022-09-08T09:12:44.945302",
+                "actor": "thiagorbm",
+                "value": -10
+            },
+            {
+                "date": "2022-09-08T09:15:22.551979",
+                "actor": "thiagorbm",
+                "value": -10
+            },
+            {
+                "date": "2022-09-08T09:15:25.799039",
+                "actor": "thiagorbm",
+                "value": 10
+            },
+            {
+                "date": "2022-09-08T09:15:41.991570",
+                "actor": "thiagorbm",
+                "value": -500
+            },
+            {
+                "date": "2022-09-08T09:15:50.188357",
+                "actor": "thiagorbm",
+                "value": 500
             }
         ],
         "beltrano@dunder.com": [
             {
-                "date": "2022-09-06T10:44:21.854205",
+                "date": "2022-09-08T09:02:18.367255",
                 "actor": "system",
-                "value": 100
+                "value": 500
             }
         ]
     },
     "users": {
         "fulano@dunder.com": {
-            "password": "jTPtZzQ3"
+            "password": "c8GTyeP9"
         },
         "ciclano@dunder.com": {
-            "password": "XQ4IjcEb"
+            "password": "iqvxnbIs"
         },
         "beltrano@dunder.com": {
-            "password": "dsr9ZTqX"
+            "password": "udvVyoSs"
         }
     }
 }
