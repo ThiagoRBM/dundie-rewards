@@ -24,121 +24,21 @@
     "movement": {
         "fulano@dunder.com": [
             {
-                "date": "2022-09-08T09:02:18.363471",
+                "date": "2022-09-08T14:53:51.893904",
                 "actor": "system",
-                "value": 500
-            },
-            {
-                "date": "2022-09-08T09:08:49.975046",
-                "actor": "thiagorbm",
-                "value": 10
-            },
-            {
-                "date": "2022-09-08T09:10:08.462460",
-                "actor": "thiagorbm",
-                "value": -10
-            },
-            {
-                "date": "2022-09-08T09:12:16.788061",
-                "actor": "thiagorbm",
-                "value": 10
-            },
-            {
-                "date": "2022-09-08T09:12:24.597929",
-                "actor": "thiagorbm",
-                "value": -10
-            },
-            {
-                "date": "2022-09-08T09:12:42.054099",
-                "actor": "thiagorbm",
-                "value": 10
-            },
-            {
-                "date": "2022-09-08T09:12:44.945286",
-                "actor": "thiagorbm",
-                "value": -10
-            },
-            {
-                "date": "2022-09-08T09:15:22.551961",
-                "actor": "thiagorbm",
-                "value": -10
-            },
-            {
-                "date": "2022-09-08T09:15:25.799023",
-                "actor": "thiagorbm",
-                "value": 10
-            },
-            {
-                "date": "2022-09-08T09:15:41.991541",
-                "actor": "thiagorbm",
-                "value": -500
-            },
-            {
-                "date": "2022-09-08T09:15:50.188341",
-                "actor": "thiagorbm",
                 "value": 500
             }
         ],
         "ciclano@dunder.com": [
             {
-                "date": "2022-09-08T09:02:18.365400",
+                "date": "2022-09-08T14:53:51.895931",
                 "actor": "system",
                 "value": 100
-            },
-            {
-                "date": "2022-09-08T09:08:49.975062",
-                "actor": "thiagorbm",
-                "value": 10
-            },
-            {
-                "date": "2022-09-08T09:10:08.462476",
-                "actor": "thiagorbm",
-                "value": -10
-            },
-            {
-                "date": "2022-09-08T09:12:16.788076",
-                "actor": "thiagorbm",
-                "value": 10
-            },
-            {
-                "date": "2022-09-08T09:12:24.597953",
-                "actor": "thiagorbm",
-                "value": -10
-            },
-            {
-                "date": "2022-09-08T09:12:42.054114",
-                "actor": "thiagorbm",
-                "value": 10
-            },
-            {
-                "date": "2022-09-08T09:12:44.945302",
-                "actor": "thiagorbm",
-                "value": -10
-            },
-            {
-                "date": "2022-09-08T09:15:22.551979",
-                "actor": "thiagorbm",
-                "value": -10
-            },
-            {
-                "date": "2022-09-08T09:15:25.799039",
-                "actor": "thiagorbm",
-                "value": 10
-            },
-            {
-                "date": "2022-09-08T09:15:41.991570",
-                "actor": "thiagorbm",
-                "value": -500
-            },
-            {
-                "date": "2022-09-08T09:15:50.188357",
-                "actor": "thiagorbm",
-                "value": 500
             }
         ],
         "beltrano@dunder.com": [
             {
-                "date": "2022-09-08T09:02:18.367255",
+                "date": "2022-09-08T14:53:51.898356",
                 "actor": "system",
                 "value": 500
             }
@@ -146,13 +46,13 @@
     },
     "users": {
         "fulano@dunder.com": {
-            "password": "c8GTyeP9"
+            "password": "0UfKvcF1"
         },
         "ciclano@dunder.com": {
-            "password": "iqvxnbIs"
+            "password": "wP8vhloF"
         },
         "beltrano@dunder.com": {
-            "password": "udvVyoSs"
+            "password": "RBoeaFkL"
         }
     }
 }

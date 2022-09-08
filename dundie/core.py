@@ -61,7 +61,7 @@ def read(**query):
         # acima. ':=' chama WALRUS ou Assignment Expression
         if (email := query.get("email")) and email != pk:
             continue
-
+        # breakpoint()
         return_data.append(
             {
                 "email": pk,  # o email está como key
