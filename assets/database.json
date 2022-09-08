@@ -17,8 +17,8 @@
         }
     },
     "balance": {
-        "fulano@dunder.com": 500,
-        "ciclano@dunder.com": 100,
+        "fulano@dunder.com": 512,
+        "ciclano@dunder.com": 112,
         "beltrano@dunder.com": 500
     },
     "movement": {
@@ -77,6 +77,11 @@
                 "date": "2022-09-08T09:15:50.188341",
                 "actor": "thiagorbm",
                 "value": 500
+            },
+            {
+                "date": "2022-09-08T12:52:24.681195",
+                "actor": "thiagorbm",
+                "value": 12
             }
         ],
         "ciclano@dunder.com": [
@@ -134,6 +139,11 @@
                 "date": "2022-09-08T09:15:50.188357",
                 "actor": "thiagorbm",
                 "value": 500
+            },
+            {
+                "date": "2022-09-08T12:52:24.681215",
+                "actor": "thiagorbm",
+                "value": 12
             }
         ],
         "beltrano@dunder.com": [
