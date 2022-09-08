@@ -1,3 +1,4 @@
+"""Setup for dundie."""
 import os
 
 from setuptools import find_packages, setup
@@ -5,6 +6,7 @@ from setuptools import find_packages, setup
 
 def read(*paths):
     """Lê arquivos text.
+
     >>> read("projeto","VERSION")
     '0.1.0'
     >>> read(README.md)
