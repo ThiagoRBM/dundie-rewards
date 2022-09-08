@@ -75,8 +75,9 @@ def show(output, **query):
     - Department
     - Role
 
-    >>> dundie show --dept=sales
-    >>> dundie show --dept=sales --output=/tmp/foo.json
+    Example::
+        dundie show --dept=sales
+        dundie show --dept=sales --output=/tmp/foo.json
 
     """
     result = core.read(**query)
