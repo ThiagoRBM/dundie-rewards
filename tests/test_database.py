@@ -18,9 +18,9 @@ def test_database_commit():
     """Testa se as informações estão sendo salvas corretamente no DB"""
     db = connect()  # conecta no DB
     data = {  # faz alterações, como no nome de alguém
-        "name": "fulano da silva",
         "role": "salesman",
         "dept": "sales",
+        "name": "fulano da silva",
     }
     db["people"]["fulano@dunder.com"] = data
     commit(db)  # faz o commit das alterações
@@ -33,8 +33,8 @@ def test_database_commit():
 
 @pytest.mark.unit
 def test_add_person_for_the_first_time():
-    pk = "fulano3@doe.com"  # pessoa que nao existe no DB
-    data = {"role": "salesman", "dept": "sales", "name": "Joe Doe"}
+    pk = "maria@doe.com"  # pessoa que nao existe no DB
+    data = {"role": "salesman", "dept": "sales", "name": "maria"}
     db = connect()
     _, created = add_person(db, pk, data)
     assert created is True
@@ -60,10 +60,11 @@ def test_negative_add_person_invalid_email():
 
 @pytest.mark.unit
 def test_add_or_remove_points_for_person():
-    pk = "joe@doe.com"
-    data = {"role": "salesman", "dept": "sales", "name": "Joe Doe"}
+    pk = "maria@dunder.com"
+    data = {"role": "salesman", "dept": "sales", "name": "maria"}
     db = connect()  # conecta no DB
     _, created = add_person(db, pk, data)
+
     commit(db)  # comita
 
     db = connect()  # reconecta

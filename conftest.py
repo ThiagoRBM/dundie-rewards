@@ -1,5 +1,6 @@
 import pytest
-from unittest.mock import patch  # usa o "mocking".
+from unittest.mock import patch  # usa o "mocking"
+# import time
 
 MARKER = """\
 integration: mark integration tests
@@ -24,9 +25,11 @@ def go_to_tmpdir(request):
 
 @pytest.fixture(autouse=True, scope="function")
 def setup_testing_database(request):
-    """Cria um banco de dados para cada teste em tmpdir e evitar conflitos
+    """Cria um banco de dados para cada teste em tmpdir e evita conflitos
     Força database.py a usar esse diretório"""
     tmpdir = request.getfixturevalue("tmpdir")
+    # tmsp= round(time.time())
     test_db = str(tmpdir.join("database.test.json"))
+    # breakpoint()
     with patch("dundie.database.DATABASE_PATH", test_db):
         yield  # testes vem para cá: /tmp/pytest-of-thiagorbm/pytest-current

@@ -1,7 +1,13 @@
 import os
 from csv import reader
 
-from dundie.database import add_movement, add_person, commit, connect
+from dundie.database import (
+    add_movement,
+    add_person,
+    commit,
+    connect,
+    set_initial_balance,
+)
 from dundie.utils.log import get_logger
 
 """Funcoes principais"""
@@ -61,11 +67,18 @@ def read(**query):
         # acima. ':=' chama WALRUS ou Assignment Expression
         if (email := query.get("email")) and email != pk:
             continue
-        # breakpoint()
+
+        try:
+            balanco = db["balance"][pk]
+        except KeyError:
+            dados = db["people"].get(pk)
+            set_initial_balance(db, pk, dados)
+            balanco = db["balance"][pk]
+
         return_data.append(
             {
                 "email": pk,  # o email está como key
-                "balance": db["balance"][pk],
+                "balance": balanco,
                 "last_movement": db["movement"][pk][-1]["date"],
                 **data,
             }
