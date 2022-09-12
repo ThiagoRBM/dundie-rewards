@@ -25,7 +25,7 @@ def read_requierements(path):
 
 
 setup(
-    name="dundie_trbm",  # pode ser qualquer coisa. É o nome que será usado no
+    name="dundie",  # pode ser qualquer coisa. É o nome que será usado no
     # pip. Aparentemente tem que se o mesmo que está no decorator de cli.py
     # Major.Minor.Patch
     # X.Y.Z
