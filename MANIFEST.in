@@ -1,0 +1,2 @@
+#  Para incluir na build coisas além de .py
+include tests/assets/*.csv

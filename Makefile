@@ -1,4 +1,5 @@
-.PHONY: install virtualenv ipython clean test watch pflake8 # assim o makefile não cria arquivos extras (que é o padrão), coloca os comandos que foram criados abaixo
+.PHONY: install virtualenv ipython clean test watch pflake8 build docs docs-serve build
+# assim o makefile não cria arquivos extras (que é o padrão), coloca os comandos que foram criados abaixo
 
 
 install: # rodar como "make install
@@ -35,7 +36,7 @@ watch:
 	# É uma ferramenta do UNIX e não python; sudo apt install entr
 	# -- forked usa o pytest-forked
 
-clean:            # Clean unused files.
+clean:            # Clean unused files. Util quando limpamos para fazer outra build
 	@find ./ -name '*.pyc' -exec rm -f {} \;
 	@find ./ -name '__pycache__' -exec rm -rf {} \;
 	@find ./ -name 'Thumbs.db' -exec rm -f {} \;
@@ -49,3 +50,22 @@ clean:            # Clean unused files.
 	@rm -rf htmlcov
 	@rm -rf .tox/
 	@rm -rf docs/_build
+
+docs:  # gera o site
+	@mkdocs build --clean
+
+
+docs-serve:  # cria uma pasta para o site
+	@mkdocs serve
+
+
+build:  # faz a build do repositório
+	@python setup.py sdist bdist_wheel
+
+
+publish-test:  # publica no testpypi
+	@twine upload --repository testpypi dist/*
+
+
+publish:  # publica no pypi
+	@twine upload dist/*
