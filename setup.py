@@ -26,7 +26,7 @@ def read_requierements(path):
 
 setup(
     name="dundie",  # pode ser qualquer coisa. É o nome que será usado no
-    # pip. Aparentemente tem que se o mesmo que está no decorator de cli.py
+    # pip.
     # Major.Minor.Patch
     # X.Y.Z
     version="0.1.0",  # padrão semantic versioning
