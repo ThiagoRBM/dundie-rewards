@@ -18,7 +18,7 @@ click.rich_click.APPEND_METAVARS_HELP = True
 
 @click.group()
 @click.version_option(
-    pkg_resources.get_distribution("dundie").version
+    pkg_resources.get_distribution("dundie_trbm").version
 )  # adicionar versão
 def main():
     """Dunder Mifflin reward system

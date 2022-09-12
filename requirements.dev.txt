@@ -20,6 +20,7 @@ mkdocs  # rodar mkdocs new .
 # uma pasta chamada docs será criada
 # depois rodar mkdocs serve para criar o site
 
+
 # build
 wheel
 
