@@ -31,22 +31,6 @@ def test_commit_to_database():
         == data["email"]
     )
 
-# @pytest.mark.unit
-# def test_database_commit():
-#     """Testa se as informações estão sendo salvas corretamente no DB"""
-#     db = connect()  # conecta no DB
-#     data = {  # faz alterações, como no nome de alguém
-#         "role": "salesman",
-#         "dept": "sales",
-#         "name": "fulano da silva",
-#     }
-#     db["people"]["fulano@dunder.com"] = data
-#     commit(db)  # faz o commit das alterações
-#     db = connect()  # conecta no DB novamente
-#     assert db["people"]["fulano@dunder.com"] == data
-#     # testa se o nome mudou, inicialmente era apenas fulano e depois do
-#     # commit é para ser fulano da silva
-#     # /tmp/pytest-of-thiagorbm/pytest-current/test_database_commit0
 
 @pytest.mark.unit
 def test_add_person_for_the_first_time():
