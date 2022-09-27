@@ -1,6 +1,7 @@
 import pytest
 from unittest.mock import patch  # usa o "mocking"
-# import time
+from sqlmodel import create_engine
+from dundie import models
 
 MARKER = """\
 integration: mark integration tests
@@ -28,8 +29,9 @@ def setup_testing_database(request):
     """Cria um banco de dados para cada teste em tmpdir e evita conflitos
     Força database.py a usar esse diretório"""
     tmpdir = request.getfixturevalue("tmpdir")
-    # tmsp= round(time.time())
-    test_db = str(tmpdir.join("database.test.json"))
+    test_db = str(tmpdir.join("database.test.db"))
     # breakpoint()
-    with patch("dundie.database.DATABASE_PATH", test_db):
+    engine = create_engine(f"sqlite:///{test_db}")
+    models.SQLModel.metadata.create_all(bind=engine)
+    with patch("dundie.database.engine", engine):
         yield  # testes vem para cá: /tmp/pytest-of-thiagorbm/pytest-current

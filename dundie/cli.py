@@ -42,7 +42,7 @@ def load(filepath):  # dependency injection // dundie load --help
     """
 
     table = Table(title="Dunder Mifflin Associates")
-    headers = ["name", "dept", "role", "e-mail"]
+    headers = ["email", "name", "dept", "role", "created"]
     for header in headers:
         table.add_column(header, style="#e96600")
 
