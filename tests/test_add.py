@@ -1,30 +1,38 @@
 import pytest
 
-from dundie.database import connect, commit, add_person
-from dundie.core import add
+from dundie.core import add, load, read
+from dundie.database import get_session
+from dundie.models import Person
+from dundie.utils.db import add_person
 
 
 @pytest.mark.unit
 def test_add_movement():
-    db = connect()  # conecta no DB
+    with get_session() as session:
+        data = {
+            "role": "Salesman",
+            "dept": "Sales",
+            "name": "Joe Doe",
+            "email": "joe@doe.com",
+        }
+        joe, created = add_person(session, Person(**data))
+        assert created is True
 
-    pk = "joe@doe.com"
-    data = {"role": "salesman", "dept": "sales", "name": "Joe Doe"}
-    _, created = add_person(db, pk, data)
-    assert created is True
+        data = {
+            "role": "Manager",
+            "dept": "Management",
+            "name": "Jim Doe",
+            "email": "jim@doe.com",
+        }
+        jim, created = add_person(session, Person(**data))
+        assert created is True
 
-    pk = "jim@due.com"
-    data = {"role": "manager", "dept": "management", "name": "Jim Due"}
-    db = connect()  # conecta no DB
-    _, created = add_person(db, pk, data)
-    print(_)
-    assert created is True
-    commit(db)
+        session.commit()
 
-    add(-30, email="joe@doe.com")
-    add(90, dept="management")
+        add(-30, email="joe@doe.com")
+        add(90, dept="Management")
+        session.refresh(joe)
+        session.refresh(jim)
 
-    db = connect()
-
-    assert db["balance"]["joe@doe.com"] == 470
-    assert db["balance"]["jim@due.com"] == 190
+        assert joe.balance[0].value == 470
+        assert jim.balance[0].value == 190
