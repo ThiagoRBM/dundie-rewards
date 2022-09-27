@@ -5,6 +5,7 @@ from dundie.database import get_session
 from dundie.models import Person
 from dundie.utils.db import add_person
 
+from .constants import PEOPLE_FILE
 
 @pytest.mark.unit
 def test_read_with_query():
