@@ -1,6 +1,6 @@
 import pytest
 
-from dundie.core import add, load, read
+from dundie.core import add
 from dundie.database import get_session
 from dundie.models import Person
 from dundie.utils.db import add_person
