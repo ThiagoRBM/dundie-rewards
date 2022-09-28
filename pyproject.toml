@@ -24,7 +24,7 @@ exclude = '''
   | _build
   | build
   | dist
-  | \migrations
+  | migrations
 )/
 '''
 
