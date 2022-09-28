@@ -7,7 +7,7 @@ testpaths = [
 ]
 
 [tool.flake8]
-exclude = [".venv", "build", "testeLOAD.py", "migrations"]
+exclude = [".venv", "build", "testeLOAD.py"]
 max-line-length= 79  # ajustar tamanho máximo de linha, 79 é o padrão.
 # Caso queira ignorar um erro no pyflake, colocar "# noqa" (no quality assurance)
 # na linha que está com problema
