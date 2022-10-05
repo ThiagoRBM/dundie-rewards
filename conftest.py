@@ -3,6 +3,7 @@ from unittest.mock import patch  # usa o "mocking"
 from sqlmodel import create_engine
 from dundie import models
 
+
 MARKER = """\
 integration: mark integration tests
 unit: mark unit tests
