@@ -30,15 +30,12 @@ def test_add_movement():
 
         session.commit()
 
-        user = session.exec(select(Person.id)
-                            .where(Person.email == "jim@doe.com")
-                            )
+        user = session.exec(
+            select(Person.id).where(Person.email == "jim@doe.com")
+        )
         user = [i for i in user][0]
 
-        pass_ = session.exec(
-            select(User).
-            where(User.person_id == user)
-        )
+        pass_ = session.exec(select(User).where(User.person_id == user))
         pass_ = [i for i in pass_][0].password
 
         add(-30, email="joe@doe.com", login="jim@doe.com", senha=pass_)

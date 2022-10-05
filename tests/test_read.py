@@ -32,15 +32,13 @@ def test_read_with_query():
     session.commit()
 
     user = session.exec(
-        select(models.Person.id)
-        .where(models.Person.email == "jim@doe.com")
-        )
+        select(models.Person.id).where(models.Person.email == "jim@doe.com")
+    )
     user = [i for i in user][0]
 
     pass_ = session.exec(
-            select(models.User).
-            where(models.User.person_id == user)
-        )
+        select(models.User).where(models.User.person_id == user)
+    )
     pass_ = [i for i in pass_][0].password
 
     response = read(dept="sales", login="jim@doe.com", senha=pass_)

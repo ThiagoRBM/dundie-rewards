@@ -67,8 +67,9 @@ def test_positive_login():
         # uma senha é criada automaticamente e de modo aleatório
 
         user = session.exec(
-            select(models.Person.id)
-            .where(models.Person.email == data["email"])
+            select(models.Person.id).where(
+                models.Person.email == data["email"]
+            )
         )
 
         user = [i for i in user][0]
@@ -77,8 +78,7 @@ def test_positive_login():
 
         #  pegar o password da tabela, que foi criado aleatoriamente
         pass_ = session.exec(
-            select(models.User).
-            where(models.User.person_id == user)
+            select(models.User).where(models.User.person_id == user)
         )
         pass_ = [i for i in pass_][0].password
 
