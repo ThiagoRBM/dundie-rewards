@@ -1,30 +1,47 @@
 import pytest
 
-from dundie.database import connect, commit, add_person
 from dundie.core import add
+from dundie.database import get_session
+from dundie.models import Person, User
+from dundie.utils.db import add_person
+from sqlmodel import select
 
 
 @pytest.mark.unit
 def test_add_movement():
-    db = connect()  # conecta no DB
+    with get_session() as session:
+        data = {
+            "role": "salesman",
+            "dept": "sales",
+            "name": "Joe Doe",
+            "email": "joe@doe.com",
+        }
+        joe, created = add_person(session, Person(**data))
+        assert created is True
 
-    pk = "joe@doe.com"
-    data = {"role": "salesman", "dept": "sales", "name": "Joe Doe"}
-    _, created = add_person(db, pk, data)
-    assert created is True
+        data = {
+            "role": "manager",
+            "dept": "sales",
+            "name": "Jim Doe",
+            "email": "jim@doe.com",
+        }
+        jim, created = add_person(session, Person(**data))
+        assert created is True
 
-    pk = "jim@due.com"
-    data = {"role": "manager", "dept": "management", "name": "Jim Due"}
-    db = connect()  # conecta no DB
-    _, created = add_person(db, pk, data)
-    print(_)
-    assert created is True
-    commit(db)
+        session.commit()
 
-    add(-30, email="joe@doe.com")
-    add(90, dept="management")
+        user = session.exec(
+            select(Person.id).where(Person.email == "jim@doe.com")
+        )
+        user = [i for i in user][0]
 
-    db = connect()
+        pass_ = session.exec(select(User).where(User.person_id == user))
+        pass_ = [i for i in pass_][0].password
 
-    assert db["balance"]["joe@doe.com"] == 470
-    assert db["balance"]["jim@due.com"] == 190
+        add(-30, email="joe@doe.com", login="jim@doe.com", senha=pass_)
+        add(90, dept="sales", login="jim@doe.com", senha=pass_)
+        session.refresh(joe)
+        session.refresh(jim)
+
+        assert joe.balance[0].value == 560
+        assert jim.balance[0].value == 590

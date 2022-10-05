@@ -42,7 +42,7 @@ def load(filepath):  # dependency injection // dundie load --help
     """
 
     table = Table(title="Dunder Mifflin Associates")
-    headers = ["name", "dept", "role", "e-mail"]
+    headers = ["email", "name", "dept", "role", "currency", "created"]
     for header in headers:
         table.add_column(header, style="#e96600")
 
@@ -63,6 +63,8 @@ def load(filepath):  # dependency injection // dundie load --help
 @click.option("--email", required=False)  # se deixado em branco,
 # mostra todo o DB
 @click.option("--output", default=None)  # passar se quer salvar.
+@click.option("--login", required=False)
+@click.option("--senha", required=False)
 def show(output, **query):
     """Shows info about an specific email or entire department and if
     left without arguments, all employees are shown.
@@ -80,6 +82,7 @@ def show(output, **query):
         dundie show --dept=sales --output=/tmp/foo.json
 
     """
+
     result = core.read(**query)
 
     if output:
@@ -94,6 +97,8 @@ def show(output, **query):
         table.add_column(key.title(), style="#e96600")
 
     for person in result:
+        person["value"] = f"{person['value']:.2f}"
+        person["balance"] = f"{person['balance']:.2f}"
         table.add_row(*[str(value) for value in person.values()])
 
     console = Console()
@@ -104,6 +109,8 @@ def show(output, **query):
 @click.argument("value", type=click.INT, required=True)
 @click.option("--dept", required=False)
 @click.option("--email", required=False)
+@click.option("--login", required=False)
+@click.option("--senha", required=False)
 @click.pass_context  # para mostrar a tabela no CLI após fazer a movimentação
 # possibilita que um comando chame outro
 def add(ctx, value, **query):

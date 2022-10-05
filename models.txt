@@ -1,0 +1,80 @@
+## Aqui um exemplo de como seria SEM usar a lib pydantic
+# várias coisas ficam mais simples.
+# representar o banco de dados com ajuda de classes
+
+from dataclasses import dataclass
+from decimal import Decimal
+from datetime import datetime
+from dundie.utils.email import check_valid_email
+from abc import ABC
+import json
+
+
+class InvalidEmailError(Exception):
+    # criando uma classe específica para erro de email inválido
+    ...
+
+
+class Serializable(ABC):
+    # criando uma classe que permita serializar as classes
+    # de volta para dicionários
+    def dict(self):
+        return vars(self)
+
+
+@dataclass  # para não precisar ficar usando __init__
+class Person (Serializable):  # classe para representar pessoa (como inicilmenten no json)
+    pk: str  # usar type annotation para definir tipo do atributo
+    name: str
+    dept: str
+    role: str
+
+    def __post_init__(self):
+        # adicionando a validação de email aqui.
+        # como a anotação dataclass está sendo usada, não existe o
+        # método __init__ ,onde ficaria a checagem,
+        # então __post_init__ é usado
+        if not check_valid_email(pk):
+            raise InvalidEmailError(f"Email inválido para {self}: '{self.pk}'")
+
+    def __str__(self):
+        # definindo como a classe será mostrada com o print (protocolo
+        # __str__ : printable)
+        return f"{self.name} - {self.role}"
+
+
+@dataclass
+class Balance(Serializable):
+    person: Person  # recebe uma instância de Person
+    value: Decimal  # usar tipo decimal, para boa precisão
+
+    def dict(self):
+        #  método para poder serializar a classe Person, que é composta
+        # por tipos de dados que a lib json não consegue serializar por padrão.
+        # transformando em dict, ela vai conseguir
+        return {
+            "person": self.person.pk,
+            "balance": str(self.value)
+        }
+
+@dataclass
+class Movement(Serializable):
+    person: Person
+    date: datetime
+    actor: str
+    value: Decimal
+
+    def dict(self):
+        return {
+
+        }
+
+from dundie.database import connect
+db = connect()
+
+for pk, data in db["people"].items():
+    #  fazendo a desserialização do banco de dados em json
+    p= Person(pk, **data)
+    print(p)
+
+print(json.dumps(p.dict()))

@@ -1,36 +1,50 @@
 import pytest
 
-from dundie.database import connect, commit, add_person
 from dundie.core import read
+from dundie.database import get_session
+from dundie.utils.db import add_person
+from sqlmodel import select
+from dundie import models
 
 
 @pytest.mark.unit
 def test_read_with_query():
-    db = connect()  # conecta no DB
-    # breakpoint()
-    pk = "alberto@dunder.com"
-    data = {"role": "salesman", "dept": "management", "name": "alberto"}
-    _, created = add_person(db, pk, data)
-    # breakpoint()
+    session = get_session()
+
+    data = {
+        "role": "salesman",
+        "dept": "sales",
+        "name": "Joe Doe",
+        "email": "joe@doe.com",
+    }
+    _, created = add_person(session, models.Person(**data))
     assert created is True
 
-    pk = "jim2@due.com"
-    data = {"role": "manager", "dept": "accounting", "name": "Jim Due"}
-    db = connect()  # conecta no DB
-    _, created = add_person(db, pk, data)
+    data = {
+        "role": "manager",
+        "dept": "sales",
+        "name": "Jim Doe",
+        "email": "jim@doe.com",
+    }
+    _, created = add_person(session, models.Person(**data))
     assert created is True
-    commit(db)
-    # breakpoint()  ## aqui
-    response = read()
-    # breakpoint()
-    # assert len(response) == 2  # se não passar nada, recebe os dois usuários
 
-    response = read(dept="accounting")
+    session.commit()
+
+    user = session.exec(
+        select(models.Person.id).where(models.Person.email == "jim@doe.com")
+    )
+    user = [i for i in user][0]
+
+    pass_ = session.exec(
+        select(models.User).where(models.User.person_id == user)
+    )
+    pass_ = [i for i in pass_][0].password
+
+    response = read(dept="sales", login="jim@doe.com", senha=pass_)
+    assert len(response) == 2
+    assert response[1]["name"] == "Jim Doe"
+
+    response = read(email="joe@doe.com", login="jim@doe.com", senha=pass_)
     assert len(response) == 1
-    assert response[0]["name"] == "Jim Due"
-    # funcao read gera uma lista, por isso o indice 0
-    response = read(email="alberto@dunder.com")
-    assert len(response) == 1
-    assert response[0]["name"] == "alberto"
-    # para rodar apenas esse teste e não todos (com o make test):
-    # pytest -m "unit" -k read
+    assert response[0]["name"] == "Joe Doe"
