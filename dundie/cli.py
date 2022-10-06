@@ -1,4 +1,5 @@
 import json
+from decimal import Decimal
 
 import pkg_resources  # pega informacoes do repositório lá no setup.py
 import rich_click as click  # lib para facilitar a criação da CLI
@@ -63,6 +64,7 @@ def load(filepath):  # dependency injection // dundie load --help
 @click.option("--email", required=False)  # se deixado em branco,
 # mostra todo o DB
 @click.option("--output", default=None)  # passar se quer salvar.
+@click.option("--movements", required=False)
 @click.option("--login", required=False)
 @click.option("--senha", required=False)
 def show(output, **query):
@@ -84,6 +86,8 @@ def show(output, **query):
     """
 
     result = core.read(**query)
+
+    # breakpoint()
 
     if output:
         with open(output, "w") as output_file:
@@ -128,3 +132,27 @@ def remove(ctx, value, **query):
     """Remove points from user or dept."""
     core.add(-value, **query)
     ctx.invoke(show, **query)
+
+
+@main.command()
+@click.option("--output", default=None)  # passar se quer salvar.
+@click.option("--login", required=False)
+@click.option("--senha", required=False)
+def movements(output, **query):
+    result = core.read_movements(**query)
+    # print(result)
+    # breakpoint()
+
+    table = Table(title="Movement history")
+
+    for key in result[0]:
+        table.add_column(key.title(), style="#e96600")
+
+    for movement in result:
+        movement["donnor"] = f"{movement['donnor']}"
+        movement["date"] = f"{movement['date']}"
+        movement["value"] = f"{movement['value']:.2f}"
+        table.add_row(*[str(value) for value in movement.values()])
+
+    console = Console()
+    console.print(table)

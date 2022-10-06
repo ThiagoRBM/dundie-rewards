@@ -44,4 +44,4 @@ def test_add_movement():
         session.refresh(jim)
 
         assert joe.balance[0].value == 560
-        assert jim.balance[0].value == 590
+        assert jim.balance[0].value == 500
