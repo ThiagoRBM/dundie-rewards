@@ -287,7 +287,7 @@ def add(value: Decimal, **query: Query):
                 donnor_balance = session.exec(
                     select(Balance).where(Balance.person_id == donnor.id)
                 ).first()
-                #breakpoint()
+                #  breakpoint()
                 if donnor_balance.value - value < 0:
                     print(f"Saldo insuficiente: {donnor_balance.value}")
                     sys.exit(0)

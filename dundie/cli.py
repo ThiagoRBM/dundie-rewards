@@ -1,5 +1,4 @@
 import json
-from decimal import Decimal
 
 import pkg_resources  # pega informacoes do repositório lá no setup.py
 import rich_click as click  # lib para facilitar a criação da CLI
