@@ -1,12 +1,12 @@
-import os
 import sys
 from csv import reader
+from decimal import Decimal
 from typing import Any, Dict, List
 
 from sqlmodel import select
 
 from dundie.database import check_user_password, get_session
-from dundie.models import Person
+from dundie.models import Balance, Movement, Person
 from dundie.settings import DATEFMT
 from dundie.utils.db import add_movement, add_person
 from dundie.utils.exchange import get_rates
@@ -55,6 +55,9 @@ def read(**query: Query) -> ResultDict:
     Accepts as query key: 'dept' or 'email'.
 
     read(email= "joe@doe.com")
+
+    User must be logged to run command. Checks user's permissions
+    before running.
     """
 
     #  transforma a query em um dicionário para processamento
@@ -207,7 +210,7 @@ def read(**query: Query) -> ResultDict:
 
     else:
         #  se o usuário não for nem CEO nem manager, só tem acesso aos próprios
-        # dados
+        #  dados
 
         if "dept" in query:
             print("Operação não permitida.")
@@ -251,8 +254,10 @@ def read(**query: Query) -> ResultDict:
     return return_data
 
 
-def add(value: int, **query: Query):
-    """Add value to each record on query"""
+def add(value: Decimal, **query: Query):
+    """Add value to each record on query.
+    User must be logged to run.
+    """
     query = {k: v for k, v in query.items() if v is not None}
     people = read(**query)
 
@@ -266,12 +271,78 @@ def add(value: int, **query: Query):
         raise RuntimeError("Not Found")
 
     with get_session() as session:
-        user = os.getenv("USER")  # por enquanto pega o user do ENV do sistema
+        user = query["login"]  # por enquanto pega o user do ENV do sistema
         # caso o argumento seja deixado em branco
         for person in people:
-            instance = session.exec(
-                select(Person).where(Person.email == person["email"])
-            ).first()
-            add_movement(session, instance, value, user)
+            if person["email"] != query["login"]:
+                instance = session.exec(
+                    select(Person).where(Person.email == person["email"])
+                ).first()
+                add_movement(session, instance, value, user)
 
-        session.commit()
+                donnor = session.exec(
+                    select(Person).where(Person.email == query["login"])
+                ).first()
+
+                donnor_balance = session.exec(
+                    select(Balance).where(Balance.person_id == donnor.id)
+                ).first()
+                #  breakpoint()
+                if donnor_balance.value - value < 0:
+                    print(f"Saldo insuficiente: {donnor_balance.value}")
+                    sys.exit(0)
+                else:
+                    donnor_balance.value = donnor_balance.value - value
+
+                    session.commit()
+
+
+def read_movements(**query: Query):
+    """Reads user's movement history from the Balance table."""
+
+    query = {k: v for k, v in query.items() if v is not None}
+    # breakpoint()
+    # print("aqui")
+    if "login" not in query:
+        login = input("Digite seu email:\n").strip()
+    else:
+        login = query["login"]
+        query.pop("login")
+
+    if "senha" not in query:
+        senha = input("Digite sua senha:\n").strip()
+    else:
+        senha = query["senha"]
+        query.pop("senha")
+
+    role = check_user_password(login, senha)
+
+    if not role:
+        sys.exit(0)
+    else:
+        with get_session() as session:
+
+            #  aqui, selecionando as movimentacoes de acordo com o LOGIN
+            #  a partir da coluna Movement.person_id pego qual é o email
+            #  que RECEBEU a tranferência
+            History = session.exec(
+                select(Person.email, Movement).where(
+                    Movement.actor == login, Person.id == Movement.person_id
+                )
+            )
+            History = [i for i in History]
+            # breakpoint()
+
+            Movements = []
+            for movement in History:
+                # breakpoint()
+                Movements.append(
+                    {
+                        "donnor": movement[1].actor,
+                        "date": movement[1].date.strftime(DATEFMT),
+                        "value": Decimal(movement[1].value),
+                        "receptor": movement[0],
+                    }
+                )
+            # breakpoint()
+            return Movements

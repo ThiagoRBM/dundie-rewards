@@ -1,3 +1,4 @@
+from decimal import Decimal
 from typing import Optional
 
 from sqlmodel import Session, select
@@ -56,7 +57,7 @@ def set_initial_balance(session: Session, person: Person):
 def add_movement(
     session: Session,
     person: Person,
-    value: int,
+    value: Decimal,
     actor: Optional[str] = "system",
 ):
     """Cria a movimentação da pontuação entre usuário
